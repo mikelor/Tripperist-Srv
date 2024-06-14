@@ -3,8 +3,8 @@ Newest changes listed first.
 The goal of this is to capture the changes needed to get a workable solution up and running. 
 This will help me remember what changes to make in future backend projects. For now it will be extremely verbose.
 
-## 2024.06.14.04 - Suport for persisting data between runs
-Create a space on disk to persist settings. 
+## 2024.06.14.04 - PgAdmin support and persisting data between runs
+Create a space on disk to persist settings, and add PgAdmin
 
 We will use the .WithDataVolume() method on the dbServer. See [Persist .NET Aspire app data using volumes.](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/persist-data-volumes)
 
@@ -35,7 +35,7 @@ dbServer
 host.docker.internal
 modify port according to dashboard
 use paramter password value
-
+```
 
 ## 2024.06.14.03 - Add PostgreSQL Support
 Add a PostgreSQL database server to the solution
