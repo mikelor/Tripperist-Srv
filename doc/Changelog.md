@@ -3,8 +3,21 @@ Newest changes listed first.
 The goal of this is to capture the changes needed to get a workable solution up and running. 
 This will help me remember what changes to make in future backend projects. For now it will be extremely verbose.
 
-## 2024.06.14.02 - Attempted Option B But Unsuccessful
-I attempted to follow instructions for Linux and WSL, however I was unable to get to work. For now we are going forward with Option A. Filing an Issue in this GitHub repository.
+## 2024.06.14.03 - Add PostgreSQL Support
+Add a PostgreSQL database server to the solution
+1. Add Aspire.Hosting.PostgreSQL package to AppHost project
+`
+dotnet add package aspire.hosting.postgresql
+`
+2. Add Postgres Database Server and Places Db and create a reference to it in teh API project. (see code changes)
+
+The .WithReference(PlacesDb) allows for the creation of an environment variable "ConnectionStrings_PlacesDb" that has the connection infromation to the PlacesDb on the dbServer.
+
+
+
+## 2024.06.14.02 - Https - Attempted Option B But Unsuccessful
+I attempted to follow instructions for Linux and WSL, however I was unable to get to work. For now we are going forward with Option A. 
+  * Filed Issue [#1](https://github.com/mikelor/tripperist-srv/issues/1)
 
 ## 2024.06.14.01 - Implemented Option A
 Allow Unsecured Transport via Settings File
