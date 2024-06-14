@@ -1,7 +1,13 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Add Places Database 
-var dbServer = builder.AddPostgres("dbServer");
+
+var dbPassword = builder.AddParameter("DbServerPassword", true);
+
+var dbServer = builder.AddPostgres("dbServer", password: dbPassword)
+    .WithDataVolume()
+    .WithPgAdmin();
+    
 var placesDb = dbServer.AddDatabase("PlacesDb");
 
 var apiService = builder.AddProject<Projects.Tripperist_ApiService>("apiservice")

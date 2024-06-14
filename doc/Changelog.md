@@ -3,6 +3,40 @@ Newest changes listed first.
 The goal of this is to capture the changes needed to get a workable solution up and running. 
 This will help me remember what changes to make in future backend projects. For now it will be extremely verbose.
 
+## 2024.06.14.04 - Suport for persisting data between runs
+Create a space on disk to persist settings. 
+
+We will use the .WithDataVolume() method on the dbServer. See [Persist .NET Aspire app data using volumes.](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/persist-data-volumes)
+
+Named volumes require a consisten password between app launches. See [Create a persisten password.](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/persist-data-volumes) 
+
+We will use the AddParameter method to create a parameter that can be used as a password. The password will be stored in the appSettings.development.json file. We will create a Parameters section as follows.
+```
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Parameters": {
+    "DbServerPassword": "Db$3rv3r"
+  }
+}
+```
+
+Finally we will now add support for PgAdmin have a web based user interface for postgres administration.
+
+There is an issue in Aspire [Set read permissions to allow pgadmin container to read the generated config file](https://github.com/dotnet/aspire/pull/4191) that is causing a problem with loading the Database Server in PgAdmin. Checking to see if it made it into a release yet.
+
+So need to Add New Server Manually
+```
+dbServer
+host.docker.internal
+modify port according to dashboard
+use paramter password value
+
+
 ## 2024.06.14.03 - Add PostgreSQL Support
 Add a PostgreSQL database server to the solution
 1. Add Aspire.Hosting.PostgreSQL package to AppHost project
